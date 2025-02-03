@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Info</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>Customer Info....</h1>
+        </header>
+        <form action="{% url 'search_result' %}" method="GET">
+        {% csrf_token %}
+        <!-- Search Bar Section -->
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search by product name" name="search_txt" required>
+            <input type="submit" value="Submit" name="search_btn" class="search_bt">
+        </div>
+    </form>
+
+        <!-- Content Section -->
+        <div class="content">
+            <!-- Form Section -->
+            <div class="form-container">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="product-name">Product Name:</label>
+                        <input type="text" id="product-name" name="product-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="purchasing-price">Selling Price:</label>
+                        <input type="number" id="purchasing-price" name="purchasing-price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-number">Customer Mobile Number:</label>
+                        <input type="text" id="customer-number" name="customer-number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <button type="submit" name="form_btn">Submit</button>
+                </form>
+            </div>
+
+            <!-- Table Section -->
+            <div class="table-container">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Customer Mobile Number</th>
+                                <th>Seling Price</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cnf in cus_info %}
+                            <tr>
+                                <td>{{ cnf.id }}</td>
+                                <td>{{ cnf.product_name }}</td>
+                                <td>{{ cnf.quantity }}</td>
+                                <td>{{ cnf.customer_number }}</td>
+                                <td><mark>{{ cnf.purshasing_price }}/-</mark></td>
+                                <td>{{ cnf.date }}</td>
+                            </tr>
+                            {% endfor %}
+                            <!-- Additional rows go here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+    <!-- Search Bar Section -->
+    <div class="search-container">
+        <input type="submit" value="P&L" name="billing_btn" class="search_bt">
+    </div>
+</body>
+</html>

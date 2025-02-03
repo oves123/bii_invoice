@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Table</title>
+    <link rel="stylesheet" href="{% static 'css/second.css' %}">
+</head>
+<body>
+    {% if products %}
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Product Name</th>
+                <th>Purchasing Price</th>
+                <th>Quantity</th>
+                <th>Customer Mobile Number</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in products %}
+            <tr>
+                <td>{{ data.id }}</td>
+                <td>{{ data.product_name }}</td>
+                <td><mark>{{ data.purshasing_price }}/-</mark></td>
+                <td>{{ data.quantity }}</td>
+                <td>{{ data.customer_number }}</td>
+                <td>{{ data.date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No products found</p>
+    {% endif %}
+</body>
+</html>

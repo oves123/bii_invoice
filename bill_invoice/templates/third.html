@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P&L</title>
+    <link rel="stylesheet" href="{% static 'css/third.css' %}">
+</head>
+<body>
+    {% if cus_info %}
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Selling Price</th>
+                <th>Date</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in cus_info %}
+            <tr>
+                <td>{{ data.id }}</td>
+                <td>{{ data.product_name }}</td>
+                <td>{{ data.quantity }}</td>
+                <td>{{ data.purshasing_price }}</td>
+                <td>{{ data.date }}</td>
+                <td><mark>{{ data.total_price }}/-</mark></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p class="net_p"><b>NET PROFIT BEFORE TAX:- {{ total_amt }}/-</b></p>
+    <p><b>NET PROFIT AFTER TAX:- {{ net_p }}/-</b></p>
+    {% else %}
+    <p>No Data Found</p>
+    {% endif %}
+</body>
+</html>
